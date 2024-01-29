@@ -17,13 +17,13 @@ return new class extends Migration
             $table->string('year')->nullable();
             $table->string('letter')->nullable();
             $table->string('metal')->nullable();
-            $table->foreignId('save_id')->constrained('im_lot_saves');
-            $table->foreignId('metal_id')->constrained('im_lot_metals');
+            $table->foreignId('save_id')->constrained('lot_saves');
+            $table->foreignId('metal_id')->constrained('lot_metals');
             $table->decimal('price', 8, 2, true)->default(0);
             $table->dateTime('closing_at')->default(now());
-            $table->foreignId('auction_id')->constrained('im_auctions');
-            $table->foreignId('category_id')->constrained('im_categories');
-            $table->increments('position');
+            $table->foreignId('auction_id')->constrained('auctions');
+            $table->foreignId('category_id')->constrained('categories');
+            $table->integer('position');
             $table->string('rarity')->nullable();
             $table->string('owner')->nullable();
             $table->string('features');
