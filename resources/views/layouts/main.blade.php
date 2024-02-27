@@ -41,10 +41,20 @@
 
 <body class="header-fixed">
 <div class="wrapper">
+    @php
+        if(\Illuminate\Support\Facades\URL::current() !== 'http://imperial-k.test')
+            $array = ['content' => 'content container-fluid', 'row' => 'row row-content', 'col' => 'col-md-10 content-main-area', 'include' => true];
+        else
+            $array = ['content' => 'content container', 'row' => 'row', 'col' => 'col-md-12', 'include' => false];
+    @endphp
+
     @include('layouts.navbar')
-    <div @if(\Illuminate\Support\Facades\URL::current() !== 'http://imperial-k.test') class="content container-fluid" @else class="content container" @endif>
-        <div class="row">
-            <div class="col-md-12">
+    <div class="{{$array['content']}}">
+        <div class="{{$array['row']}}">
+            @if($array['include'])
+                @include('layouts.left-nav')
+            @endif
+            <div class="{{$array['col']}}">
                 @yield('content')
             </div>
         </div>
