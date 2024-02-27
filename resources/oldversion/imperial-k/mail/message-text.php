@@ -1,0 +1,3 @@
+Уважаемый <?= $user->username?>!
+
+<?= $message ?>
