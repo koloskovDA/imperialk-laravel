@@ -13,7 +13,30 @@
             </div>
             <div id="collapseFour" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    <?php //app\components\LoginWidget::widget() ?>
+                    <form id="login-form-widget" action="{{ route('login') }}" method="post">
+                        @csrf
+
+                        <div class="form-group field-loginform-username required has-success">
+                            <label class="control-label" for="loginform-username">Логин</label>
+                            <input type="text" id="loginform-username" class="form-control" name="email">
+
+                        </div><div class="form-group field-loginform-password required has-success">
+                            <label class="control-label" for="loginform-password">Пароль</label>
+                            <input type="password" id="loginform-password" class="form-control" name="password">
+
+                        </div><div class="form-group field-loginform-rememberme">
+
+                            <input type="hidden" name="remember" value="0"><label><input type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]" value="1" checked="" wfd-id="id5"> Запомнить меня</label>
+
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="col-md-offset-1 col-md-10 btn btn-primary" name="login-button">Войти</button></div>
+                        @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}">Забыли пароль</a> <br>
+                        @endif
+                        <a href="{{route('register')}}">Регистрация</a></form>
+
+
                 </div>
             </div>
         </div>
