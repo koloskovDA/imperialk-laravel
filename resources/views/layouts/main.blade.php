@@ -10,13 +10,17 @@
         'resources/oldversion/css/header-v5.css',
         'resources/oldversion/js/app.js',
         'resources/oldversion/js/shop.app.js',
+
         'resources/js/app.js',
         'resources/oldversion/js/bootstrap.min.js',
         'resources/oldversion/css/bootstrap.css',
         'resources/oldversion/css/shop.style.css',
         'resources/oldversion/css/line-icons.css',
         'resources/oldversion/css/perfect-scrollbar.css',
+        'resources/oldversion/js/perfect-scrollbar.js',
         'resources/oldversion/css/jquery.nouislider.css',
+        'resources/oldversion/css/shop.plugins.css',
+        'resources/oldversion/js/back-to-top.js',
     ])
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
@@ -43,18 +47,27 @@
 <div class="wrapper">
     @php
         if(\Illuminate\Support\Facades\URL::current() !== 'http://imperial-k.test')
+        {
             $array = ['content' => 'content container-fluid', 'row' => 'row row-content', 'col' => 'col-md-10 content-main-area', 'include' => true];
+            $true = true;
+        }
         else
+        {
             $array = ['content' => 'content container', 'row' => 'row', 'col' => 'col-md-12', 'include' => false];
+            $true = false;
+        }
     @endphp
 
     @include('layouts.navbar')
     <div class="{{$array['content']}}">
         <div class="{{$array['row']}}">
-            @if($array['include'])
+            @if($true)
                 @include('layouts.left-nav')
             @endif
             <div class="{{$array['col']}}">
+                @if($true)
+                    @livewire('time')
+                @endif
                 @yield('content')
             </div>
         </div>
