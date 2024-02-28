@@ -47,6 +47,7 @@
                     <li><a href="https://shop.imperial-k.ru">Магазин</a></li>
                     <li><a href="/contact">Контакты</a></li>
                     <li><a href="/filials">Филиалы</a></li>
+                    <li><a href="/admin">Админка</a></li>
                 </ul>            </div><!--/navbar-collapse-->
         </div>
     </div>
