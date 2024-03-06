@@ -382,7 +382,7 @@ return [
         ],
         [
             'text'        => 'Филиалы',
-            'url'         => 'admin/pages',
+            'url'         => '/admin/filials/list',
             'icon'        => 'far fa-fw fa-map',
             //'label'       => 4,
             'label_color' => 'success',
