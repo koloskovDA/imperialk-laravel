@@ -11,4 +11,12 @@ use Spatie\Enum\Enum;
  */
 class AuctionStatusEnum extends Enum
 {
+    public static function labels()
+    {
+        return [
+            'hidden' => 'Скрыт',
+            'published' => 'Опубликован',
+            'finished' => 'Завершён'
+        ];
+    }
 }

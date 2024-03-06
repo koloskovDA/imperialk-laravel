@@ -1,9 +1,11 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\AuctionController;
 
 Route::prefix('admin')->group(function() {
     Route::get('/', [IndexController::class, 'index'])->name('index');
-    Route::resource('auctions', \App\Http\Controllers\Admin\AuctionController::class);
-
+    Route::prefix('auctions')->group(function() {
+        Route::get('list', [AuctionController::class, 'list'])->name('list');
+    });
 });

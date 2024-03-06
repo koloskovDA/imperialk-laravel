@@ -292,42 +292,36 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'Поиск',
+            'text'         => 'Вернуться на сайт',
             'topnav_right' => true,
+            'url'  => '/',
         ],
         [
-            'type'         => 'fullscreen-widget',
+            'text'         => 'Выйти',
             'topnav_right' => true,
+            'url'  => '/logout',
         ],
 
         // Sidebar items:
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'Поиск',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
             'text'    => 'Аукционы',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas fa-fw fa-gavel',
             'submenu' => [
                 [
                     'text' => 'Список аукционов',
-                    'url'  => '#',
+                    'url'  => '/admin/auctions/list',
+                    'icon' => 'fas fa-fw fa-gavel',
                 ],
                 [
                     'text'    => 'Категории',
                     'url'     => '#',
+                    'icon' => 'fas fa-fw fa-tags',
                 ],
             ],
         ],
         [
             'text'    => 'Интернет-магазин',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon' => 'fas fa-fw fa-shopping-cart',
             'submenu' => [
                 [
                     'text' => 'Каталог',
@@ -354,43 +348,43 @@ return [
         [
             'text'        => 'Новости',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'icon'        => 'far fa-fw fa-newspaper',
+            //'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Пользователи',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'icon'        => 'far fa-fw fa-user',
+            //'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Сообщения',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'icon'        => 'far fa-fw fa-envelope',
+            //'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Контакты',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'icon'        => 'far fa-fw fa-address-book',
+            //'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Страницы',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            //'label'       => 4,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Филиалы',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'icon'        => 'far fa-fw fa-map',
+            //'label'       => 4,
             'label_color' => 'success',
         ],
     ],
