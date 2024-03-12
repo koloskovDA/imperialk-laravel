@@ -314,7 +314,7 @@ return [
                 ],
                 [
                     'text'    => 'Категории',
-                    'url'     => '#',
+                    'url'     => '/admin/categories/list',
                     'icon' => 'fas fa-fw fa-tags',
                 ],
             ],
