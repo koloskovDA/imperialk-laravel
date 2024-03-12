@@ -58,7 +58,7 @@
                         @foreach($auctions as $auction)
                             <tr class="odd">
                                 <td class="dtr-control sorting_1" tabindex="0">
-                                    {{$auction->name}}
+                                    <a href="/admin/auctions/{{$auction->id}}/lots">{{$auction->name}}</a>
                                 </td>
                                 <td>
                                     {{Carbon\Carbon::parse($auction->closing_at)->translatedFormat('d F Y, H:i:s')}}
