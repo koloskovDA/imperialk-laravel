@@ -14,9 +14,9 @@ class Auctions extends Component
 
     public $closing_at = '';
 
-    public Auction $auction_to_delete;
+    public Auction|null $auction_to_delete = null;
 
-    public Auction $auction_to_update;
+    public Auction|null $auction_to_update = null;
 
     public function showModal()
     {
@@ -82,6 +82,10 @@ class Auctions extends Component
 
     public function confirmDelete()
     {
-        $this->auction_to_delete->delete();
+        if ($this->auction_to_delete)
+        {
+            $this->auction_to_delete->delete();
+        }
+        $this->auction_to_delete = null;
     }
 }

@@ -14,9 +14,9 @@ class Filials extends Component
 
     public string $address = '';
 
-    public Filial $filial_to_delete;
+    public Filial|null $filial_to_delete = null;
 
-    public Filial $filial_to_update;
+    public Filial|null $filial_to_update = null;
 
     public function showModal()
     {
@@ -72,7 +72,10 @@ class Filials extends Component
 
     public function confirmDelete()
     {
-        $this->filial_to_delete->delete();
+        if ($this->filial_to_delete)
+        {
+            $this->filial_to_delete->delete();
+        }
     }
 
     public function render()
