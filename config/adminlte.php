@@ -320,6 +320,22 @@ return [
             ],
         ],
         [
+            'text'    => 'Лоты',
+            'icon'    => 'fas fa-fw fa-list',
+            'submenu' => [
+                [
+                    'text' => 'Состояния',
+                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-glasses',
+                ],
+                [
+                    'text'    => 'Материалы',
+                    'url'     => '#',
+                    'icon' => 'fas fa-fw fa-vial',
+                ],
+            ],
+        ],
+        [
             'text'    => 'Интернет-магазин',
             'icon' => 'fas fa-fw fa-shopping-cart',
             'submenu' => [
