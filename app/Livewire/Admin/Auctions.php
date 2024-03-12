@@ -21,6 +21,7 @@ class Auctions extends AdminComponent
         $this->inputTypes = Auction::getInputTypes();
         $this->enums = Auction::getEnums();
         $this->search = array_fill_keys(Auction::search(), null);
+        $this->showUrl = '/admin/auctions/{id}/lots';
     }
 
     public function createInstance()
