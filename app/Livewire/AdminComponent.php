@@ -29,6 +29,8 @@ class AdminComponent extends Component
     public string $createUrl = '';
     public string $editUrl = '';
 
+    public string $showUrl = '';
+
     public array $rules = [];
     public array $rulesMessages = [];
 

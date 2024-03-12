@@ -1,9 +1,13 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <button type="button" wire:click="createInstance" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-                Создать {{strtolower($classLabel)}}
-            </button>
+            @if (!$createUrl)
+                <button type="button" wire:click="createInstance" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
+                    Создать {{strtolower($classLabel)}}
+                </button>
+            @else
+                <a href="{{$createUrl}}" class="btn btn-success">Создать {{strtolower($classLabel)}}</a>
+            @endif
         </div>
 
         <div class="card-body">
@@ -45,16 +49,24 @@
                             </tr>
                             @foreach($collection as $item)
                                 <tr class="odd">
-                                    @foreach($properties as $property)
+                                    @foreach($properties as $key => $property)
                                         <td class="dtr-control sorting_1" tabindex="0">
-                                            {{ $item->{$property} }}
+                                            @if ($key == 0 && $showUrl)
+                                                <a href="{{str_replace('{id}', $item->id, $showUrl)}}">{{ $item->{$property} }}</a>
+                                            @else
+                                                {{ $item->{$property} }}
+                                            @endif
                                         </td>
                                     @endforeach
                                     <td>
-                                        <button class="btn btn-sm btn-light"><i class="far fa-fw fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-light" data-toggle="modal" data-target="#modal-edit" wire:click="editInstance({{$item}})">
-                                            <i class="fas fa-fw fa-pencil"></i>
-                                        </button>
+                                        <!--<button class="btn btn-sm btn-light"><i class="far fa-fw fa-eye"></i></button>-->
+                                        @if (!$editUrl)
+                                            <button class="btn btn-sm btn-light" data-toggle="modal" data-target="#modal-edit" wire:click="editInstance({{$item}})">
+                                                <i class="fas fa-fw fa-pencil"></i>
+                                            </button>
+                                        @else
+                                            <a href="{{$editUrl}}" class="btn btn-sm btn-light"><i class="fas fa-fw fa-pencil"></i></a>
+                                        @endif
                                         <button class="btn btn-sm btn-light" data-toggle="modal" data-target="#modal-sm" wire:click="deleteInstance({{$item}})">
                                             <i class="far fa-fw fa-trash-can"></i>
                                         </button>
@@ -77,7 +89,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" wire:ignore.self id="modal-default" style="display: none;" aria-hidden="true">
+    @if(!$createUrl)
+        <div class="modal fade" wire:ignore.self id="modal-default" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -114,8 +127,10 @@
             </div>
         </div>
     </div>
+    @endif
 
-    <div class="modal fade" wire:ignore.self id="modal-edit" style="display: none;" aria-hidden="true">
+    @if(!$editUrl)
+        <div class="modal fade" wire:ignore.self id="modal-edit" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -152,6 +167,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <div class="modal fade" wire:ignore.self id="modal-sm" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
