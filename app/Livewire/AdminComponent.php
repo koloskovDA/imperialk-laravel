@@ -38,7 +38,7 @@ class AdminComponent extends Component
 
     public array $search = [];
 
-    public int $paginator = 2;
+    public int $paginator = 20;
 
     public function render()
     {
