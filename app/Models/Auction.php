@@ -12,4 +12,9 @@ class Auction extends Model
     protected $fillable = [
         'name', 'closing_at', 'closing_end', 'status'
     ];
+
+    public function lots()
+    {
+        return $this->hasMany(Lot::class, 'auction_id', 'id');
+    }
 }
