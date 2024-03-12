@@ -16,6 +16,17 @@ class Auction extends Model
         'name', 'closing_at', 'closing_end', 'visibility'
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::saving(function ($model) {
+            if (empty($model->closing_end) || ($model->closing_at > $model->closing_end)) {
+                $model->closing_end = Carbon::parseFromLocale($model->closing_at)->addSeconds(5);
+            }
+        });
+    }
+
     public function getClosingAtAttribute($value)
     {
         return Carbon::parse($value)->translatedFormat('d F Y, H:i:s');
@@ -50,6 +61,15 @@ class Auction extends Model
         ];
     }
 
+    public static function getInputTypes() : array
+    {
+        return [
+            'name' => 'text',
+            'closing_at' => 'datetime-local',
+            'visibility' => 'select'
+        ];
+    }
+
     public static function getPropertiesLabels() : array
     {
         return [
@@ -60,8 +80,34 @@ class Auction extends Model
         ];
     }
 
+    public static function getEnums() : array
+    {
+        return [
+            'visibility' => AuctionStatusEnum::toArray()
+        ];
+    }
+
     public static function getLabel() : string
     {
         return 'Аукцион';
+    }
+
+    public static function rules() : array
+    {
+        return [
+            'values.name' => 'required'
+        ];
+    }
+
+    public static function rulesMessages() : array
+    {
+        return [
+            'values.name.required' => 'Укажите название'
+        ];
+    }
+
+    public static function search() : array
+    {
+        return [ 'name' ];
     }
 }
