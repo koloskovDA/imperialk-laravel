@@ -390,7 +390,7 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Страницы',
+            'text'        => 'Правила аукциона',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             //'label'       => 4,
