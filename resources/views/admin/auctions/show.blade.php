@@ -9,4 +9,3 @@
 @section('content')
     @livewire('admin.lots', ['auction' => $auction])
 @stop
-нфкт
