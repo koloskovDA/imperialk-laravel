@@ -383,7 +383,7 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Контакты',
+            'text'        => 'Настройки',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-address-book',
             //'label'       => 4,
