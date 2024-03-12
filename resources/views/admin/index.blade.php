@@ -15,6 +15,5 @@
 @endsection
 
 @section('js')
-    <script> console.log('Hi!'); </script>
     @vite(['resources/js/adminlte.js'])
 @stop
