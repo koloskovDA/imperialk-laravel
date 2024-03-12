@@ -2,90 +2,39 @@
 
 namespace App\Livewire\Admin;
 
+use App\Livewire\AdminComponent;
 use App\Models\Auction;
 use Carbon\Carbon;
 use Livewire\Component;
 
-class Auctions extends Component
+class Auctions extends AdminComponent
 {
-    public string $name = '';
-
-    public string $visibility = '';
-
-    public $closing_at = '';
-
-    public Auction|null $auction_to_delete = null;
-
-    public Auction|null $auction_to_update = null;
-
-    public function showModal()
+    public function mount()
     {
-        $this->closing_at = Carbon::parse("Last tuesday of this month")
+        $this->class = Auction::class;
+        $this->properties = Auction::getProperties();
+        $this->requiredProperties = Auction::getRequiredProperties();
+        $this->propertiesLabels = Auction::getPropertiesLabels();
+        $this->classLabel = Auction::getLabel();
+        $this->rules = Auction::rules();
+        $this->rulesMessages = Auction::rulesMessages();
+        $this->inputTypes = Auction::getInputTypes();
+        $this->enums = Auction::getEnums();
+        $this->search = array_fill_keys(Auction::search(), null);
+    }
+
+    public function createInstance()
+    {
+        $closing_at = Carbon::parse("Last tuesday of this month")
             ->subWeek()
             ->addHours(17);
-        $this->closing_at = $this->closing_at->format('Y-m-d H:i');
-        $this->closing_at = str_replace(' ', 'T', $this->closing_at);
-        $this->name = 'Аукцион №'.Auction::count()+1;
-    }
 
-    public function render()
-    {
-        $auctions = Auction::all();
+        $closing_at = $closing_at->format('Y-m-d H:i');
+        $closing_at = str_replace(' ', 'T', $closing_at);
 
-        return view('livewire.admin.auctions', compact('auctions'));
-    }
-
-    public function createAuction()
-    {
-        $this->validate([
-            'name' => 'required'
-        ], [
-            'name.required' => 'Укажите название'
-        ]);
-        Auction::create([
-            'name' => $this->name,
-            'closing_at' => $this->closing_at,
-            'closing_end' => Carbon::parse($this->closing_at)->addSeconds(5),
-            'visibility' => $this->visibility
-        ]);
-        $this->dispatch('close-modal');
-    }
-
-    public function editAuction(Auction $auction)
-    {
-        $this->closing_at = $auction->closing_at;
-        $this->name = $auction->name;
-        $this->visibility = $auction->visibility;
-        $this->auction_to_update = $auction;
-    }
-
-    public function confirmEdit()
-    {
-        $this->validate([
-            'name' => 'required'
-        ], [
-            'name.required' => 'Укажите название'
-        ]);
-        $this->auction_to_update->update([
-            'name' => $this->name,
-            'closing_at' => $this->closing_at,
-            'closing_end' => Carbon::parse($this->closing_at)->addSeconds(5),
-            'visibility' => $this->visibility
-        ]);
-        $this->dispatch('close-modal');
-    }
-
-    public function deleteAuction(Auction $auction)
-    {
-        $this->auction_to_delete = $auction;
-    }
-
-    public function confirmDelete()
-    {
-        if ($this->auction_to_delete)
-        {
-            $this->auction_to_delete->delete();
-        }
-        $this->auction_to_delete = null;
+        $this->values = [
+            'name' => 'Аукцион №'.Auction::count()+1,
+            'closing_at' => $closing_at,
+        ];
     }
 }
